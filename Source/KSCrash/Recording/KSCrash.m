@@ -158,8 +158,8 @@ static NSString* getBasePath()
         }
         self.deleteBehaviorAfterSendAll = KSCDeleteAlways;
         self.introspectMemory = YES;
-        self.catchZombies = NO;
-        self.maxReportCount = 5;
+        self.catchZombies = NO; // 是否监听僵尸对象
+        self.maxReportCount = 5; // 最大报告数量
         self.searchQueueNames = NO;
         self.monitoring = KSCrashMonitorTypeProductionSafeMinimal;
     }
@@ -440,7 +440,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
                                               description:@"No sink set. Crash reports not sent."]);
         return;
     }
-    
+    // 将报告怎么解析，解析完后调用
     [self.sink filterReports:reports
                 onCompletion:^(NSArray* filteredReports, BOOL completed, NSError* error)
      {

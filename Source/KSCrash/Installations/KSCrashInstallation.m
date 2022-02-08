@@ -349,7 +349,7 @@ static void crashCallback(const KSCrashReportWriter* writer)
     }
     
     sink = [KSCrashReportFilterPipeline filterWithFilters:self.prependedFilters, sink, nil];
-
+    // KSCrashInstallation 实际的发送crash是采用KSCrash发送的
     KSCrash* handler = [KSCrash sharedInstance];
     handler.sink = sink;
     [handler sendAllReportsWithCompletion:onCompletion];

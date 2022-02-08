@@ -7,6 +7,7 @@
 
 #import <KSCrash/KSCrash.h> // TODO: Remove this
 #import <KSCrash/KSCrashInstallation+Alert.h>
+#import <KSCrash/KSCrashInstallationConsole.h>
 #import <KSCrash/KSCrashInstallationStandard.h>
 #import <KSCrash/KSCrashInstallationQuincyHockey.h>
 #import <KSCrash/KSCrashInstallationEmail.h>
@@ -37,8 +38,9 @@ didFinishLaunchingWithOptions:(__unused NSDictionary *) launchOptions
 - (void) installCrashHandler
 {
     // Create an installation (choose one)
+    KSCrashInstallation* installation = [self makeConsoleInstallation];
 //    KSCrashInstallation* installation = [self makeStandardInstallation];
-    KSCrashInstallation* installation = [self makeEmailInstallation];
+//    KSCrashInstallation* installation = [self makeEmailInstallation];
 //    KSCrashInstallation* installation = [self makeHockeyInstallation];
 //    KSCrashInstallation* installation = [self makeQuincyInstallation];
 //    KSCrashInstallation *installation = [self makeVictoryInstallation];
@@ -65,10 +67,13 @@ didFinishLaunchingWithOptions:(__unused NSDictionary *) launchOptions
          }
      }];
 }
-
+- (KSCrashInstallation *) makeConsoleInstallation {
+    KSCrashInstallation *install = [KSCrashInstallationConsole sharedInstance];
+    return  install;
+}
 - (KSCrashInstallation*) makeEmailInstallation
 {
-    NSString* emailAddress = @"your@email.here";
+    NSString* emailAddress = @"1192653008@qq.com";
     
     KSCrashInstallationEmail* email = [KSCrashInstallationEmail sharedInstance];
     email.recipients = @[emailAddress];

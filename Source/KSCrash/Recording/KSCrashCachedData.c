@@ -35,7 +35,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <stdio.h>
 
 #define SWAP_POINTERS(A, B) \
 { \
@@ -54,7 +54,7 @@ static int g_allThreadsCount;
 static _Atomic(int) g_semaphoreCount;
 static bool g_searchQueueNames = false;
 static bool g_hasThreadStarted = false;
-
+// 更新ThreadList列表
 static void updateThreadList()
 {
     const task_t thisTask = mach_task_self();
@@ -148,6 +148,7 @@ static void* monitorCachedData(__unused void* const userData)
     usleep(1);
     for(;;)
     {
+        printf("这是在打印吗\n");
         if(g_semaphoreCount <= 0)
         {
             updateThreadList();
@@ -159,7 +160,7 @@ static void* monitorCachedData(__unused void* const userData)
             quickPollCount--;
             pollintInterval = 1;
         }
-        sleep(pollintInterval);
+        sleep(pollintInterval);// 在quickPollCount == 0 后，开始睡觉60s；
     }
     return NULL;
 }

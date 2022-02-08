@@ -167,12 +167,12 @@ KSCrashMonitorType kscrash_install(const char* appName, const char* const instal
     char path[KSFU_MAX_PATH_LENGTH];
     snprintf(path, sizeof(path), "%s/Reports", installPath);
     ksfu_makePath(path);
-    kscrs_initialize(appName, path);
+    kscrs_initialize(appName, path); // 报告文件位置
 
     snprintf(path, sizeof(path), "%s/Data", installPath);
-    ksfu_makePath(path);
+    ksfu_makePath(path); // 数据文件位置
     snprintf(path, sizeof(path), "%s/Data/CrashState.json", installPath);
-    kscrashstate_initialize(path);
+    kscrashstate_initialize(path); // crash的state文件位置
 
     snprintf(g_consoleLogPath, sizeof(g_consoleLogPath), "%s/Data/ConsoleLog.txt", installPath);
     if(g_shouldPrintPreviousLog)

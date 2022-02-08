@@ -280,7 +280,7 @@
     NSMutableArray* mutableFilters = (NSMutableArray*)self.filters; // Shh! Don't tell anyone!
     [mutableFilters insertObject:filter atIndex:0];
 }
-
+// 针对reports 进行一对一的解析
 - (void) filterReports:(NSArray*) reports
           onCompletion:(KSCrashReportFilterCompletion) onCompletion
 {
