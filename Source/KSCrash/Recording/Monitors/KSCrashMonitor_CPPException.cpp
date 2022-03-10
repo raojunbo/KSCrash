@@ -206,8 +206,32 @@ static void initialize()
     }
 }
 
+struct TestObject {
+    int age;
+    void testObject() {
+        printf("这是一个测的object%d",age);
+    }
+};
+struct PersonObject {
+    int age;
+};
+
 static void setEnabled(bool isEnabled)
 {
+    
+    
+    TestObject object = TestObject();
+    object.age = 22;
+    object.testObject();
+    
+    TestObject *objectRef = &object;
+    objectRef->age = 23;
+    objectRef->testObject();
+    
+    PersonObject *personObject = (PersonObject *)malloc(sizeof(PersonObject));
+    personObject->age = 24;
+    free(personObject);
+    
     if(isEnabled != g_isEnabled)
     {
         g_isEnabled = isEnabled;
